@@ -14,7 +14,8 @@ RUN dep ensure
 RUN go build -o example cmd/example/main.go
 
 FROM alpine:latest
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add git
+RUN apk apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /go/src/github.com/fterrag/go-docker-example/example .
 CMD ["./example"]
